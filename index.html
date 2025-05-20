@@ -11,6 +11,89 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/rtl.css">
+    <style>
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        position: absolute;
+        top: 18px;
+        right: auto;
+        left: 18px;
+        z-index: 1201;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #0002;
+        border: none;
+        transition: background 0.2s;
+      }
+      .nav-toggle span {
+        width: 26px;
+        height: 3px;
+        background: var(--secondary-color);
+        margin: 3px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+      .nav-toggle.active {
+        background: var(--secondary-color);
+      }
+      .nav-toggle.active span {
+        background: var(--primary-color);
+      }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: auto;
+        left: -100vw;
+        width: 80vw;
+        max-width: 340px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -2px 0 16px #0002;
+        padding: 70px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        transition: right 0.35s cubic-bezier(.4,2,.6,1);
+        z-index: 1200;
+        text-align: right;
+      }
+      .nav-menu.active {
+        left: 0;
+      }
+      .nav-menu li {
+        margin-bottom: 10px;
+      }
+      .nav-menu a {
+        font-size: 1.1em;
+        padding: 14px 10px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background 0.2s, color 0.2s;
+      }
+      .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 18px;
+      }
+      .btn-login, .btn-register {
+        width: 100%;
+        font-size: 1.08em;
+        border-radius: 10px;
+        padding: 13px 0;
+        margin: 0;
+      }
+    }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -300,6 +383,26 @@
             window.location.href = localStorage.getItem('userType') === 'student' ? 'student-dashboard.html' : 'dashboard.html';
         }
     }
+    </script>
+    <script>
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        }
+    });
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        });
+    });
     </script>
 </body>
 </html> 
