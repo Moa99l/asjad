@@ -124,4 +124,586 @@ body {
     .auth-buttons {
         flex-direction: row-reverse;
     }
+}
+
+/* الأنماط الأساسية للتصميم المتجاوب */
+:root {
+    --sidebar-width: 250px;
+    --header-height: 70px;
+    --primary-color: #ffc107; /* اللون الأصفر */
+    --secondary-color: #000000; /* اللون الأسود */
+    --text-color: #000000; /* اللون الأسود للنصوص */
+    --bg-color: #ffffff; /* الخلفية البيضاء */
+    --border-color: #e0e0e0;
+    --hover-color: #ffd54f; /* لون أصفر أفتح للتحويم */
+}
+
+/* تنسيق عام للصفحات */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f8f9fa;
+}
+
+/* تنسيق القائمة العلوية للموبايل */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    background: var(--primary-color);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* تنسيق لوحة التحكم */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* تنسيق الشريط الجانبي */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-color);
+    padding: 20px;
+    border-left: 1px solid var(--border-color);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar-logo {
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu a i {
+    margin-left: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-menu li.active a {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.sidebar-menu a:hover {
+    background: var(--hover-color);
+    color: var(--secondary-color);
+}
+
+/* تنسيق المحتوى الرئيسي */
+.dashboard-main {
+    flex: 1;
+    margin-right: var(--sidebar-width);
+    padding: 20px;
+    transition: margin 0.3s ease;
+}
+
+.dashboard-title {
+    margin-bottom: 30px;
+    color: var(--text-color);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* تنسيق البطاقات */
+.course-card, .certificate-card, .notification-card {
+    background: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover, .certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* تنسيق الصور */
+.course-image, .certificate-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.course-image img, .certificate-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* تنسيق شريط التقدم */
+.progress-bar {
+    background: #e9ecef;
+    height: 8px;
+    border-radius: 4px;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress {
+    background: var(--primary-color);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* تنسيق النماذج */
+.profile-section {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profile-avatar {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.profile-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* تنسيق الأزرار */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* تنسيق الإشعارات */
+.notification-card {
+    cursor: pointer;
+    padding: 20px;
+    border-right: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.notification-card.unread {
+    border-right-color: var(--primary-color);
+    background: rgba(0, 123, 255, 0.05);
+}
+
+.notification-card:hover {
+    background: #f8f9fa;
+    transform: translateX(-5px);
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content h3 {
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.notification-content .date {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.unread-badge {
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    margin: auto 0;
+}
+
+/* التصميم المتجاوب للموبايل */
+@media (max-width: 768px) {
+    /* الشريط الجانبي كقائمة منزلقة مع ظل وتأثير انتقال */
+    .sidebar {
+        transform: translateX(100%);
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        z-index: 1100;
+        box-shadow: -2px 0 16px rgba(0,0,0,0.15);
+        transition: transform 0.35s cubic-bezier(.4,2,.6,1);
+        width: 80vw;
+        max-width: 340px;
+        background: var(--bg-color);
+        padding-top: 70px;
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        z-index: 1200;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .mobile-menu-toggle.active {
+        background: var(--secondary-color);
+    }
+    .mobile-menu-toggle span {
+        width: 26px;
+        height: 3px;
+        background: var(--secondary-color);
+        margin: 3px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+    .mobile-menu-toggle.active span {
+        background: var(--primary-color);
+    }
+    /* تكبير الروابط والأيقونات في القائمة */
+    .sidebar-menu a {
+        font-size: 1.1em;
+        padding: 16px 18px;
+        gap: 12px;
+    }
+    .sidebar-menu i {
+        font-size: 1.3em;
+    }
+    /* إغلاق القائمة عند اختيار رابط */
+    .sidebar-menu a {
+        transition: background 0.2s, color 0.2s;
+    }
+    /* الشريط العلوي دائم الظهور */
+    .dashboard-title {
+        position: sticky;
+        top: 0;
+        background: var(--bg-color);
+        z-index: 100;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-size: 1.1em;
+        margin-top: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    /* البطاقات تأخذ عرض الشاشة بالكامل */
+    .course-card, .certificate-card, .notification-card {
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        padding: 14px 10px;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border-radius: 12px;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .course-card:active, .certificate-card:active, .notification-card:active {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+        transform: scale(0.98);
+    }
+    .course-image, .certificate-image {
+        width: 100%;
+        height: 140px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    .course-image img, .certificate-image img {
+        border-radius: 10px;
+    }
+    /* الأزرار أكبر وأسهل للنقر */
+    .btn, .btn-primary {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 13px 0;
+        margin-top: 10px;
+        border-radius: 8px;
+    }
+    /* النماذج */
+    .profile-section, .profile-form, .contact-form, .login-form {
+        padding: 18px 8px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .profile-form input, .profile-form label {
+        font-size: 1.05em;
+    }
+    .form-group {
+        margin-bottom: 18px;
+    }
+    /* الصور الشخصية */
+    .profile-avatar img {
+        width: 80px;
+        height: 80px;
+        border-width: 2px;
+    }
+    /* الإشعارات */
+    .notification-card {
+        min-height: 70px;
+        font-size: 1em;
+        padding: 13px 10px;
+        border-radius: 10px;
+        position: relative;
+    }
+    .notification-card .unread-badge {
+        right: 10px;
+        top: 18px;
+    }
+    /* تحسين التمرير */
+    .dashboard-main {
+        padding: 10px 2px 30px 2px;
+        margin-right: 0;
+        min-width: 0;
+    }
+    /* تحسين الجداول */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    table {
+        min-width: 500px;
+        font-size: 0.95em;
+    }
+    /* تحسين الخطوط */
+    body, input, button, textarea {
+        font-size: 1.05em;
+    }
+    /* إخفاء العناصر غير الضرورية */
+    .sidebar-logo {
+        display: none;
+    }
+}
+
+/* تحسينات للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .dashboard-title {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+    .course-image, .certificate-image {
+        height: 100px;
+    }
+    .profile-avatar img {
+        width: 60px;
+        height: 60px;
+    }
+    .btn, .btn-primary {
+        font-size: 1em;
+        padding: 11px 0;
+    }
+    .notification-card {
+        font-size: 0.97em;
+        padding: 10px 6px;
+    }
+}
+
+/* تأثيرات انتقالية ولمسية عامة */
+.course-card, .certificate-card, .notification-card, .btn, .sidebar, .mobile-menu-toggle {
+    transition: box-shadow 0.2s, transform 0.2s, background 0.2s, color 0.2s;
+}
+
+/* تحسينات تفاعلية عند اللمس */
+.course-card:active, .certificate-card:active, .notification-card:active, .btn:active {
+    filter: brightness(0.97);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+}
+
+/* تحسين ظهور الإشعارات غير المقروءة */
+.notification-card.unread {
+    border-right: 5px solid var(--primary-color);
+    background: #fffbe6;
+}
+
+/* تحسين ظهور رسائل النجاح والخطأ */
+.alert-success, .alert-error {
+    font-size: 1em;
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+.alert-success {
+    background: #e6ffed;
+    color: #1b5e20;
+}
+.alert-error {
+    background: #ffebee;
+    color: #b71c1c;
+}
+
+/* تحسينات للشاشات الكبيرة */
+@media (min-width: 1200px) {
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .dashboard-main {
+        padding: 30px;
+    }
+
+    .course-card, .certificate-card {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 30px;
+    }
+
+    .course-image, .certificate-image {
+        height: 250px;
+    }
+}
+
+/* تحسينات للتفاعلات */
+@media (hover: hover) {
+    .sidebar-menu a:hover {
+        background: var(--hover-color);
+        color: var(--secondary-color);
+    }
+
+    .btn:hover {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+    }
+
+    .course-card:hover, .certificate-card:hover {
+        border-color: var(--primary-color);
+    }
+}
+
+/* تحسينات للطباعة */
+@media print {
+    .sidebar, .mobile-menu-toggle {
+        display: none;
+    }
+
+    .dashboard-main {
+        margin: 0;
+        padding: 0;
+    }
+
+    .course-card, .certificate-card, .notification-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* تحديث ألوان العناصر */
+.course-status.completed {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.course-status.in-progress {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.profile-avatar img {
+    border: 3px solid var(--primary-color);
+}
+
+.profile-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
 } 

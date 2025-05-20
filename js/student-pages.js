@@ -37,6 +37,165 @@ document.addEventListener('DOMContentLoaded', function() {
             loadNotifications();
             break;
     }
+
+    // إضافة زر القائمة للموبايل
+    const body = document.body;
+    const sidebar = document.querySelector('.sidebar');
+    
+    // إنشاء زر القائمة
+    const mobileMenuToggle = document.createElement('button');
+    mobileMenuToggle.className = 'mobile-menu-toggle';
+    mobileMenuToggle.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+    `;
+    body.appendChild(mobileMenuToggle);
+
+    // تفعيل/إخفاء القائمة عند النقر على الزر
+    mobileMenuToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('active');
+        this.classList.toggle('active');
+    });
+
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', function(e) {
+        if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            sidebar.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+        }
+    });
+
+    // إغلاق القائمة عند تغيير حجم النافذة
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+        }
+    });
+
+    // تحسين التفاعلات مع البطاقات
+    const cards = document.querySelectorAll('.course-card, .certificate-card, .notification-card');
+    cards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        });
+        card.addEventListener('touchend', function() {
+            this.classList.remove('touch-active');
+        });
+    });
+
+    // تحسين التمرير السلس
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // تحسين أداء الصور
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('load', function() {
+            this.classList.add('loaded');
+        });
+        if (img.complete) {
+            img.classList.add('loaded');
+        }
+    });
+
+    // تحسين أداء النماذج
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+            }
+        });
+    });
+
+    // تحسين عرض الإشعارات
+    const notifications = document.querySelectorAll('.notification-card');
+    notifications.forEach(notif => {
+        notif.addEventListener('click', function() {
+            if (this.classList.contains('unread')) {
+                this.classList.remove('unread');
+                this.querySelector('.unread-badge')?.remove();
+                // هنا يمكن إضافة كود لتحديث حالة الإشعار في الخادم
+            }
+        });
+    });
+
+    // تحسين أداء شريط التقدم
+    const progressBars = document.querySelectorAll('.progress');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progress = entry.target;
+                const width = progress.style.width;
+                progress.style.width = '0';
+                setTimeout(() => {
+                    progress.style.width = width;
+                }, 100);
+                observer.unobserve(progress);
+            }
+        });
+    });
+
+    progressBars.forEach(bar => observer.observe(bar));
+
+    // تحسين أداء الصور الشخصية
+    const avatarInput = document.getElementById('profileAvatar');
+    if (avatarInput) {
+        avatarInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) { // 5MB
+                    alert('حجم الصورة يجب أن لا يتجاوز 5 ميجابايت');
+                    this.value = '';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const maxSize = 300;
+                        let width = img.width;
+                        let height = img.height;
+                        if (width > height) {
+                            if (width > maxSize) {
+                                height *= maxSize / width;
+                                width = maxSize;
+                            }
+                        } else {
+                            if (height > maxSize) {
+                                width *= maxSize / height;
+                                height = maxSize;
+                            }
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+                        const resizedImage = canvas.toDataURL('image/jpeg', 0.8);
+                        document.getElementById('avatarPreview').src = resizedImage;
+                        localStorage.setItem('userAvatar', resizedImage);
+                    };
+                    img.src = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 });
 
 // دالة تحميل الدورات
