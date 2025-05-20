@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الدورات - مركز أسجاد للتدريب المتقدم</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/courses.css">
+</head>
+<body class="dashboard-body">
+    <script>
+        const userType = localStorage.getItem('userType');
+        if (userType !== 'admin') {
+            window.location.href = 'student-dashboard.html';
+        }
+    </script>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>🎓 Asjad</h1>
+                    <span>Advancer Training Center</span>
+                </a>
+            </div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar">
+                <img src="images/avatar-placeholder.png" alt="صورة المستخدم">
+                <span class="status-dot online"></span>
+            </div>
+            <div class="user-details">
+                <h3 class="user-name">اسم المستخدم</h3>
+                <span class="user-role">مدرب</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="courses.html">
+                        <i class="fas fa-book"></i>
+                        <span>الدورات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="students.html">
+                        <i class="fas fa-users"></i>
+                        <span>الطلاب</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar"></i>
+                        <span>التقويم</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>الرسائل</span>
+                        <span class="badge">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>الإشعارات</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="بحث في الدورات...">
+            </div>
+            <div class="top-bar-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </button>
+                <button class="messages-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <img src="images/avatar-placeholder.png" alt="صورة المستخدم">
+                    <div class="dropdown-menu">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            الإعدادات
+                        </a>
+                        <a href="index.html" class="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Courses Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <h1>إدارة الدورات</h1>
+                <div class="breadcrumb">
+                    <a href="dashboard.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>الدورات</span>
+                </div>
+            </div>
+
+            <!-- Courses Actions -->
+            <div class="courses-actions">
+                <div class="filters">
+                    <select class="filter-select">
+                        <option value="all">جميع الدورات</option>
+                        <option value="active">الدورات النشطة</option>
+                        <option value="upcoming">الدورات القادمة</option>
+                        <option value="completed">الدورات المكتملة</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="all">جميع التصنيفات</option>
+                        <option value="web">تطوير الويب</option>
+                        <option value="mobile">تطوير الموبايل</option>
+                        <option value="design">تصميم</option>
+                        <option value="marketing">تسويق</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="addCourseBtn">
+                    <i class="fas fa-plus"></i>
+                    إضافة دورة جديدة
+                </button>
+            </div>
+
+            <!-- Courses Grid -->
+            <div class="courses-grid">
+                <!-- Course Card -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/course-web.jpg" alt="تطوير الويب">
+                        <div class="course-status active">نشط</div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-header">
+                            <h3>تطوير تطبيقات الويب المتقدمة</h3>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            تعلم تطوير تطبيقات الويب باستخدام أحدث التقنيات والأدوات
+                        </p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-users"></i> 45 طالب</span>
+                            <span><i class="fas fa-clock"></i> 12 أسبوع</span>
+                            <span><i class="fas fa-calendar"></i> يبدأ: 15/2/2024</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="btn btn-primary btn-sm">تعديل</button>
+                            <button class="btn btn-secondary btn-sm">عرض التفاصيل</button>
+                            <button class="btn btn-danger btn-sm">حذف</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/course-mobile.jpg" alt="تطوير الموبايل">
+                        <div class="course-status upcoming">قادم</div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-header">
+                            <h3>تطوير تطبيقات الموبايل</h3>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            تعلم تطوير تطبيقات الموبايل لنظامي Android و iOS
+                        </p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-users"></i> 32 طالب</span>
+                            <span><i class="fas fa-clock"></i> 16 أسبوع</span>
+                            <span><i class="fas fa-calendar"></i> يبدأ: 1/3/2024</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="btn btn-primary btn-sm">تعديل</button>
+                            <button class="btn btn-secondary btn-sm">عرض التفاصيل</button>
+                            <button class="btn btn-danger btn-sm">حذف</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Card -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/course-design.jpg" alt="تصميم">
+                        <div class="course-status completed">مكتمل</div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-header">
+                            <h3>تصميم واجهات المستخدم</h3>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            تعلم أساسيات ومبادئ تصميم واجهات المستخدم UX/UI
+                        </p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-users"></i> 28 طالب</span>
+                            <span><i class="fas fa-clock"></i> 8 أسابيع</span>
+                            <span><i class="fas fa-calendar"></i> اكتمل: 1/1/2024</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="btn btn-primary btn-sm">تعديل</button>
+                            <button class="btn btn-secondary btn-sm">عرض التفاصيل</button>
+                            <button class="btn btn-danger btn-sm">حذف</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="btn btn-secondary" disabled>
+                    <i class="fas fa-chevron-right"></i>
+                    السابق
+                </button>
+                <div class="page-numbers">
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+                <button class="btn btn-secondary">
+                    التالي
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Course Modal -->
+    <div class="modal" id="addCourseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إضافة دورة جديدة</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addCourseForm">
+                <div class="form-group">
+                    <label for="courseName">اسم الدورة</label>
+                    <input type="text" id="courseName" required>
+                </div>
+                <div class="form-group">
+                    <label for="courseCategory">التصنيف</label>
+                    <select id="courseCategory" required>
+                        <option value="">اختر التصنيف</option>
+                        <option value="web">تطوير الويب</option>
+                        <option value="mobile">تطوير الموبايل</option>
+                        <option value="design">تصميم</option>
+                        <option value="marketing">تسويق</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="courseDescription">وصف الدورة</label>
+                    <textarea id="courseDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseStartDate">تاريخ البدء</label>
+                        <input type="date" id="courseStartDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseDuration">مدة الدورة (بالأسابيع)</label>
+                        <input type="number" id="courseDuration" min="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="courseImage">صورة الدورة</label>
+                    <input type="file" id="courseImage" accept="image/*" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelAddCourse">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">إضافة الدورة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/courses.js"></script>
+</body>
+</html> 

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الطالب - مركز أسجاد للتدريب المتقدم</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background: #FFF9E3; }
+        .student-dashboard-layout { display: flex; min-height: 100vh; }
+        .sidebar-student {
+            width: 240px;
+            background: var(--primary-color);
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0 1rem 0;
+            box-shadow: 2px 0 10px #0001;
+            position: fixed;
+            top: 0; bottom: 0; right: 0;
+            z-index: 100;
+        }
+        .sidebar-student .avatar-box {
+            display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;
+        }
+        .sidebar-student .avatar-box img {
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--secondary-color); margin-bottom: 0.5rem;
+        }
+        .sidebar-student .avatar-upload {
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-student .avatar-upload input[type="file"] {
+            display: none;
+        }
+        .sidebar-student .avatar-upload label {
+            background: var(--secondary-color); color: var(--primary-color); padding: 2px 12px; border-radius: 12px; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;}
+        .sidebar-student .avatar-upload label:hover { background: #222; }
+        .sidebar-student .student-name { font-weight: bold; font-size: 1.2rem; margin-bottom: 0.2rem; }
+        .sidebar-student .student-email { font-size: 0.95rem; color: #444; margin-bottom: 1.5rem; }
+        .sidebar-student nav { width: 100%; }
+        .sidebar-student nav ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar-student nav li { margin-bottom: 1.2rem; }
+        .sidebar-student nav a {
+            display: flex; align-items: center; gap: 10px;
+            color: var(--secondary-color); background: #fff; padding: 10px 20px; border-radius: 8px 0 0 8px;
+            text-decoration: none; font-weight: 600; font-size: 1.05rem; transition: background 0.2s, color 0.2s;
+        }
+        .sidebar-student nav a.active, .sidebar-student nav a:hover { background: var(--secondary-color); color: var(--primary-color); }
+        .sidebar-student .logout-btn { margin-top: 2rem; background: #e74c3c; color: #fff; border: none; padding: 8px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        .sidebar-student .logout-btn:hover { background: #c0392b; }
+        .main-student-content { margin-right: 260px; padding: 40px 20px 20px 20px; width: 100%; }
+        .dashboard-section {background: #fff; border-radius: 12px; box-shadow: 0 2px 10px #0001; margin-bottom: 2.5rem; padding: 2.5rem;}
+        .dashboard-section h2 {margin-bottom: 1.5rem; color: var(--secondary-color); display: flex; align-items: center; gap: 10px;}
+        .student-courses-list, .student-certificates-list, .notifications-list {list-style: none; padding: 0;}
+        .student-courses-list li, .student-certificates-list li, .notifications-list li {margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: space-between; background: #FFF9E3; border-radius: 8px; padding: 1rem 1.5rem; box-shadow: 0 1px 4px #0001;}
+        .dashboard-btn {padding: 7px 22px; border-radius: 5px; border: none; background: var(--secondary-color); color: var(--primary-color); font-weight: bold; cursor: pointer; transition: background 0.2s;}
+        .dashboard-btn:hover {background: #222;}
+        .badge {background: #FFD600; color: #111; border-radius: 12px; padding: 2px 10px; font-size: 0.95rem; margin-right: 8px;}
+        .badge-success {background: #16a34a; color: #fff;}
+        .badge-warning {background: #f59e42; color: #fff;}
+        .profile-form input {padding: 10px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 1rem; width: 100%; font-size: 1.05rem;}
+        .profile-form label {font-weight: bold;}
+        .profile-form button {margin-top: 1rem;}
+        .notifications-list li.unread {font-weight: bold;}
+        .notifications-list li.read {opacity: 0.7;}
+        @media (max-width: 900px) {
+            .sidebar-student { width: 100px; padding: 1rem 0; }
+            .sidebar-student .student-name, .sidebar-student .student-email, .sidebar-student .avatar-upload label { display: none; }
+            .main-student-content { margin-right: 120px; }
+            .dashboard-section { padding: 1.2rem; }
+        }
+        @media (max-width: 600px) {
+            .student-dashboard-layout { flex-direction: column; }
+            .sidebar-student { position: static; width: 100%; flex-direction: row; justify-content: space-between; box-shadow: none; }
+            .main-student-content { margin-right: 0; padding: 10px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const userType = localStorage.getItem('userType');
+        if (userType !== 'student') {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <div class="student-dashboard-layout">
+        <aside class="sidebar-student">
+            <div class="avatar-box">
+                <img id="avatarPreview" src="images/avatar-placeholder.png" alt="الصورة الشخصية">
+                <div class="avatar-upload">
+                    <input type="file" id="profileAvatar" accept="image/*">
+                    <label for="profileAvatar"><i class="fas fa-camera"></i> تغيير الصورة</label>
+                </div>
+                <span class="student-name" id="sidebarName">اسم الطالب</span>
+                <span class="student-email" id="sidebarEmail">student@email.com</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#my-courses" class="active"><i class="fas fa-book"></i> دوراتي</a></li>
+                    <li><a href="#certificates"><i class="fas fa-certificate"></i> شهاداتي</a></li>
+                    <li><a href="#profile"><i class="fas fa-user"></i> ملفي الشخصي</a></li>
+                    <li><a href="#notifications"><i class="fas fa-bell"></i> الإشعارات <span class="badge" id="notifCount">0</span></a></li>
+                </ul>
+            </nav>
+            <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+        </aside>
+        <main class="main-student-content">
+            <h1 style="text-align:center; margin-bottom:2rem; color:var(--secondary-color);">مرحباً بك في لوحة الطالب</h1>
+            <section class="dashboard-section" id="my-courses">
+                <h2><i class="fas fa-book"></i> دوراتي</h2>
+                <ul class="student-courses-list" id="coursesList"></ul>
+            </section>
+            <section class="dashboard-section" id="certificates">
+                <h2><i class="fas fa-certificate"></i> شهاداتي</h2>
+                <ul class="student-certificates-list" id="certificatesList"></ul>
+            </section>
+            <section class="dashboard-section" id="profile">
+                <h2><i class="fas fa-user"></i> ملفي الشخصي</h2>
+                <form class="profile-form" id="profileForm">
+                    <label>الاسم</label>
+                    <input type="text" id="profileName" required>
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="profileEmail" required>
+                    <label>رقم الجوال</label>
+                    <input type="text" id="profilePhone" required>
+                    <button type="submit" class="dashboard-btn">تحديث البيانات</button>
+                </form>
+            </section>
+            <section class="dashboard-section" id="notifications">
+                <h2><i class="fas fa-bell"></i> الإشعارات</h2>
+                <ul class="notifications-list" id="notificationsList"></ul>
+            </section>
+        </main>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p style="text-align:center;">&copy; 2025 مركز أسجاد للتدريب المتقدم. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+    <script>
+    // بيانات تجريبية (يمكن ربطها بقاعدة بيانات لاحقاً)
+    const courses = [
+        {id:1, name:'دورة تطوير الويب المتقدمة', status:'نشطة'},
+        {id:2, name:'دورة التصميم الجرافيكي', status:'مكتملة'},
+        {id:3, name:'دورة اللغة الإنجليزية', status:'قيد الدراسة'}
+    ];
+    const certificates = [
+        {id:1, name:'شهادة تطوير الويب المتقدمة', received:true},
+        {id:2, name:'شهادة التصميم الجرافيكي', received:true},
+        {id:3, name:'شهادة اللغة الإنجليزية', received:false}
+    ];
+    let notifications = JSON.parse(localStorage.getItem('notifications')) || [
+        {message:'تم تسجيلك في دورة جديدة!', date:'2024-06-01', read:false},
+        {message:'تم إصدار شهادة جديدة لك.', date:'2024-06-02', read:false},
+        {message:'لديك واجب جديد في دورة تطوير الويب.', date:'2024-06-03', read:true}
+    ];
+    // عرض الدورات
+    const coursesList = document.getElementById('coursesList');
+    coursesList.innerHTML = courses.map(c => `
+        <li>
+            <span><i class="fas fa-graduation-cap"></i> ${c.name}</span>
+            <span class="badge">${c.status}</span>
+            <button class="dashboard-btn" onclick="window.location.href='course-details.html?id=${c.id}'">تفاصيل</button>
+        </li>
+    `).join('');
+    // عرض الشهادات
+    const certificatesList = document.getElementById('certificatesList');
+    certificatesList.innerHTML = certificates.map(cert => `
+        <li>
+            <span><i class="fas fa-certificate"></i> ${cert.name}</span>
+            <span class="badge ${cert.received ? 'badge-success' : 'badge-warning'}">${cert.received ? 'تم الاستلام' : 'لم تصدر بعد'}</span>
+            ${cert.received ? `<a class='dashboard-btn' href='certificates/${cert.id}.pdf' download>تحميل</a>` : ''}
+        </li>
+    `).join('');
+    // عرض الإشعارات
+    const notificationsList = document.getElementById('notificationsList');
+    function renderNotifications() {
+        notificationsList.innerHTML = notifications.map((n,i) => `
+            <li class="${n.read ? 'read' : 'unread'}" data-idx="${i}">
+                <span><i class="fas fa-bell"></i> ${n.message}</span>
+                <small style="margin-right:10px;">${n.date}</small>
+            </li>
+        `).join('');
+        document.getElementById('notifCount').textContent = notifications.filter(n=>!n.read).length;
+        localStorage.setItem('notifications', JSON.stringify(notifications));
+    }
+    renderNotifications();
+    notificationsList.addEventListener('click', function(e){
+        const li = e.target.closest('li');
+        if(li) {
+            const idx = +li.getAttribute('data-idx');
+            notifications[idx].read = true;
+            renderNotifications();
+        }
+    });
+    // بيانات المستخدم التجريبية
+    let userData = JSON.parse(localStorage.getItem('userData')) || {name:'محمد أحمد', email:'student@email.com', phone:'0500000000'};
+    document.getElementById('sidebarName').textContent = userData.name;
+    document.getElementById('sidebarEmail').textContent = userData.email;
+    document.getElementById('profileName').value = userData.name;
+    document.getElementById('profileEmail').value = userData.email;
+    document.getElementById('profilePhone').value = userData.phone;
+    // تحديث بيانات الملف الشخصي
+    const profileForm = document.getElementById('profileForm');
+    profileForm.addEventListener('submit',function(e){
+        e.preventDefault();
+        userData = {
+            name: document.getElementById('profileName').value,
+            email: document.getElementById('profileEmail').value,
+            phone: document.getElementById('profilePhone').value
+        };
+        localStorage.setItem('userData', JSON.stringify(userData));
+        document.getElementById('sidebarName').textContent = userData.name;
+        document.getElementById('sidebarEmail').textContent = userData.email;
+        alert('تم تحديث البيانات بنجاح!');
+    });
+    // رفع الصورة الشخصية
+    const avatarPreview = document.getElementById('avatarPreview');
+    const savedAvatar = localStorage.getItem('userAvatar');
+    if (savedAvatar) avatarPreview.src = savedAvatar;
+    document.getElementById('profileAvatar').addEventListener('change', function(e){
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                avatarPreview.src = evt.target.result;
+                localStorage.setItem('userAvatar', evt.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    // زر تسجيل الخروج
+    const logoutBtn = document.getElementById('logoutBtn');
+    logoutBtn.addEventListener('click',function(e){
+        e.preventDefault();
+        localStorage.removeItem('userType');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('userAvatar');
+        localStorage.removeItem('notifications');
+        window.location.href = 'index.html';
+    });
+    // تفعيل التنقل الجانبي
+    const sidebarLinks = document.querySelectorAll('.sidebar-student nav a');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    </script>
+</body>
+</html> 

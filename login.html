@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - مركز أسجاد للتدريب المتقدم</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>🎓 Asjad</h1>
+                        <span>Advancer Training Center</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">تسجيل الدخول</button>
+                    <button class="auth-tab" data-tab="register">تسجيل جديد</button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="auth-form active" id="login-form">
+                    <h2>تسجيل الدخول</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="login-email">البريد الإلكتروني</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">كلمة المرور</label>
+                            <div class="password-input">
+                                <input type="password" id="login-password" required>
+                                <i class="fas fa-eye toggle-password"></i>
+                            </div>
+                        </div>
+                        <div class="form-group remember-forgot">
+                            <label class="remember-me">
+                                <input type="checkbox">
+                                تذكرني
+                            </label>
+                            <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                    </form>
+                    <div class="auth-divider">
+                        <span>أو</span>
+                    </div>
+                    <div class="social-auth">
+                        <button class="btn btn-social btn-google">
+                            <i class="fab fa-google"></i>
+                            تسجيل الدخول باستخدام Google
+                        </button>
+                        <button class="btn btn-social btn-facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            تسجيل الدخول باستخدام Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form" id="register-form">
+                    <h2>تسجيل حساب جديد</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="register-name">الاسم الكامل</label>
+                            <input type="text" id="register-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">البريد الإلكتروني</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">كلمة المرور</label>
+                            <div class="password-input">
+                                <input type="password" id="register-password" required>
+                                <i class="fas fa-eye toggle-password"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">تأكيد كلمة المرور</label>
+                            <div class="password-input">
+                                <input type="password" id="register-confirm-password" required>
+                                <i class="fas fa-eye toggle-password"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-type">نوع الحساب</label>
+                            <select id="user-type" required>
+                                <option value="">اختر نوع الحساب</option>
+                                <option value="student">طالب</option>
+                                <option value="instructor">مدرب</option>
+                                <option value="admin">أدمن</option>
+                            </select>
+                        </div>
+                        <div class="form-group terms">
+                            <label class="checkbox-label">
+                                <input type="checkbox" required>
+                                أوافق على <a href="#">الشروط والأحكام</a> و <a href="#">سياسة الخصوصية</a>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">إنشاء حساب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+</body>
+</html> 

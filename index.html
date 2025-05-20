@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Asjad - Advancer Training Center</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.svg" alt="Asjad Logo" style="height:70px;display:block;margin:0 auto 5px;">
+                        
+                    </a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="active">الرئيسية</a></li>
+                    <li><a href="#about">عن المركز</a></li>
+                    <li><a href="#courses">الكورسات</a></li>
+                    <li><a href="#testimonials">شهادات الطلاب</a></li>
+                    <li><a href="#news">الأخبار والفعاليات</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li class="auth-buttons">
+                        <a href="login.html" class="btn btn-login" id="goLogin">تسجيل الدخول</a>
+                        <a href="login.html#register" class="btn btn-register" id="goRegister">تسجيل جديد</a>
+                    </li>
+                    <!-- أضف هذا الرابط في القائمة إذا كان المستخدم طالباً -->
+                    <!-- <li><a href="student-dashboard.html">لوحة الطالب</a></li> -->
+                </ul>
+            </div>
+        </nav>
+        <div class="user-mini-info" style="display:flex;align-items:center;gap:10px;">
+            <img id="miniAvatar" src="images/avatar-placeholder.png" style="width:36px;height:36px;border-radius:50%;">
+            <span id="miniName"></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>مركز أسجاد للتدريب المتقدم</h1>
+                <p>نقدم أفضل الدورات التدريبية في مختلف المجالات</p>
+                <div class="hero-buttons">
+                    <a href="login.html" class="btn btn-primary" id="goLogin">تسجيل الدخول</a>
+                    <a href="login.html#register" class="btn btn-secondary" id="goRegister">تسجيل جديد</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="courses">
+        <div class="container">
+            <h2 class="section-title">أقسامنا التدريبية</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>تقنية المعلومات</h3>
+                    <p>دورات في البرمجة وتطوير الويب وتكنولوجيا المعلومات</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>إدارة الأعمال</h3>
+                    <p>دورات في الإدارة والقيادة وإدارة المشاريع</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-language"></i>
+                    <h3>اللغات</h3>
+                    <p>دورات في اللغات المختلفة والترجمة</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>التصميم والفنون</h3>
+                    <p>دورات في التصميم الجرافيكي والفنون الرقمية</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>الصحة واللياقة البدنية</h3>
+                    <p>دورات في الصحة العامة واللياقة البدنية</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>ريادة الأعمال</h3>
+                    <p>دورات في ريادة الأعمال وإدارة المشاريع الناشئة</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-solar-panel"></i>
+                    <h3>الطاقة المتجددة</h3>
+                    <p>دورات في الطاقة المتجددة والاستدامة</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>التعليم والتدريب</h3>
+                    <p>دورات في أساليب التعليم والتدريب</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">عن مركز أسجاد</h2>
+                    <p>مركز أسجاد للتدريب المتقدم هو مركز رائد في مجال التدريب والتعليم الإلكتروني، يقدم مجموعة متنوعة من الدورات التدريبية في مختلف المجالات.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> مدربون محترفون</li>
+                        <li><i class="fas fa-check"></i> شهادات معتمدة</li>
+                        <li><i class="fas fa-check"></i> محتوى تعليمي عالي الجودة</li>
+                        <li><i class="fas fa-check"></i> دعم فني على مدار الساعة</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="images/about.jpg" alt="عن مركز أسجاد">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">آراء طلابنا</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"تجربة رائعة مع مركز أسجاد، الدورات ممتازة والمدربون محترفون"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/student1.jpg" alt="صورة الطالب">
+                        <div class="author-info">
+                            <h4>أحمد محمد</h4>
+                            <span>طالب في قسم تقنية المعلومات</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- المزيد من الشهادات -->
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news" id="news">
+        <div class="container">
+            <h2 class="section-title">الأخبار والفعاليات</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="images/news1.jpg" alt="خبر">
+                    </div>
+                    <div class="news-content">
+                        <h3>إطلاق دورة جديدة في البرمجة</h3>
+                        <p>نعلن عن إطلاق دورة جديدة في تطوير الويب...</p>
+                        <a href="#" class="read-more">اقرأ المزيد</a>
+                    </div>
+                </div>
+                <!-- المزيد من الأخبار -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">اتصل بنا</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>العنوان</h3>
+                        <p>شارع الرئيسي، المدينة، البلد</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>الهاتف</h3>
+                        <p>+123 456 7890</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>البريد الإلكتروني</h3>
+                        <p>info@asjad.com</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="الاسم" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="البريد الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="الموضوع" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="الرسالة" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">إرسال</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>🎓 Asjad</h2>
+                    <p>Advancer Training Center</p>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#about">عن المركز</a></li>
+                        <li><a href="#courses">الكورسات</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 مركز أسجاد للتدريب المتقدم. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+
+    <!-- تحميل الصورة الشخصية من localStorage إذا وجدت -->
+    <script>
+    const avatarPreview = document.getElementById('avatarPreview');
+    const savedAvatar = localStorage.getItem('userAvatar');
+    if (savedAvatar) avatarPreview.src = savedAvatar;
+
+    // عند اختيار صورة جديدة
+    document.getElementById('profileAvatar').addEventListener('change', function(e){
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                avatarPreview.src = evt.target.result;
+                localStorage.setItem('userAvatar', evt.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('miniName').textContent = userData.name;
+    document.getElementById('miniAvatar').src = localStorage.getItem('userAvatar') || 'images/avatar-placeholder.png';
+
+    // حماية جميع الأقسام الرئيسية: إذا لم يكن المستخدم مسجلاً الدخول، يتم توجيهه لتسجيل الدخول
+    const protectedSections = [
+        'a[href="#about"]',
+        'a[href="#courses"]',
+        'a[href="#testimonials"]',
+        'a[href="#news"]',
+        'a[href="#contact"]'
+    ];
+    protectedSections.forEach(selector => {
+        const link = document.querySelector(selector);
+        if (link) {
+            link.addEventListener('click', function(e) {
+                const userType = localStorage.getItem('userType');
+                if (!userType) {
+                    e.preventDefault();
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+    });
+    // منع العودة للصفحة الرئيسية بعد تسجيل الدخول إلا بعد تسجيل الخروج
+    if (['admin','student','instructor'].includes(localStorage.getItem('userType'))) {
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+            window.location.href = localStorage.getItem('userType') === 'student' ? 'student-dashboard.html' : 'dashboard.html';
+        }
+    }
+    </script>
+</body>
+</html> 

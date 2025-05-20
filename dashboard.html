@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - مركز أسجاد للتدريب المتقدم</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+    <script>
+        const userType = localStorage.getItem('userType');
+        if (userType !== 'admin') {
+            window.location.href = 'student-dashboard.html';
+        }
+    </script>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>🎓 Asjad</h1>
+                    <span>Advancer Training Center</span>
+                </a>
+            </div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar">
+                <img src="images/avatar-placeholder.png" alt="صورة المستخدم">
+                <span class="status-dot online"></span>
+            </div>
+            <div class="user-details">
+                <h3 class="user-name">اسم المستخدم</h3>
+                <span class="user-role">مدرب</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="#dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#courses">
+                        <i class="fas fa-book"></i>
+                        <span>الدورات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#students">
+                        <i class="fas fa-users"></i>
+                        <span>الطلاب</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#calendar">
+                        <i class="fas fa-calendar"></i>
+                        <span>التقويم</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#messages">
+                        <i class="fas fa-envelope"></i>
+                        <span>الرسائل</span>
+                        <span class="badge">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>الإشعارات</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#settings">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="بحث...">
+            </div>
+            <div class="top-bar-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </button>
+                <button class="messages-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <img src="images/avatar-placeholder.png" alt="صورة المستخدم">
+                    <div class="dropdown-menu">
+                        <a href="#profile">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="#settings">
+                            <i class="fas fa-cog"></i>
+                            الإعدادات
+                        </a>
+                        <a href="index.html" class="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <h1>لوحة التحكم</h1>
+                <div class="breadcrumb">
+                    <a href="index.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>لوحة التحكم</span>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>إجمالي الطلاب</h3>
+                        <p class="stat-number">1,234</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            12% هذا الشهر
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>الدورات النشطة</h3>
+                        <p class="stat-number">45</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            8% هذا الشهر
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>الدورات المكتملة</h3>
+                        <p class="stat-number">789</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            15% هذا الشهر
+                        </span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>متوسط التقييم</h3>
+                        <p class="stat-number">4.8</p>
+                        <span class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            0.2 هذا الشهر
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Upcoming Courses -->
+            <div class="dashboard-grid">
+                <!-- Recent Activity -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>النشاط الأخير</h2>
+                        <button class="btn btn-link">عرض الكل</button>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>تم تسجيل طالب جديد في دورة تطوير الويب</p>
+                                <span class="activity-time">منذ 5 دقائق</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>تم إضافة تعليق جديد على دورة التسويق الرقمي</p>
+                                <span class="activity-time">منذ 15 دقيقة</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>تم إكمال دورة البرمجة بلغة Python</p>
+                                <span class="activity-time">منذ ساعة</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Courses -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>الدورات القادمة</h2>
+                        <button class="btn btn-link">عرض الكل</button>
+                    </div>
+                    <div class="upcoming-courses">
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h3>تطوير تطبيقات الموبايل</h3>
+                                <p>الخميس، 15 فبراير 2024 - 10:00 صباحاً</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary btn-sm">تفاصيل</button>
+                            </div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h3>التسويق الرقمي المتقدم</h3>
+                                <p>السبت، 17 فبراير 2024 - 2:00 مساءً</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary btn-sm">تفاصيل</button>
+                            </div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h3>تصميم واجهات المستخدم</h3>
+                                <p>الاثنين، 19 فبراير 2024 - 11:00 صباحاً</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary btn-sm">تفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 

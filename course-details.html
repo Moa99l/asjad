@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الدورة - مركز أسجاد للتدريب المتقدم</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/course-details.css">
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.10/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.10/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.10/main.min.css' rel='stylesheet' />
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>🎓 Asjad</h1>
+                    <span>Advancer Training Center</span>
+                </a>
+            </div>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar">
+                <img src="images/avatar-placeholder.png" alt="صورة المستخدم">
+                <span class="status-dot online"></span>
+            </div>
+            <div class="user-details">
+                <h3 class="user-name">اسم المستخدم</h3>
+                <span class="user-role">مدرب</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="courses.html">
+                        <i class="fas fa-book"></i>
+                        <span>الدورات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="students.html">
+                        <i class="fas fa-users"></i>
+                        <span>الطلاب</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar"></i>
+                        <span>التقويم</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="messages.html">
+                        <i class="fas fa-envelope"></i>
+                        <span>الرسائل</span>
+                        <span class="badge">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>الإشعارات</span>
+                        <span class="badge">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="بحث في الطلاب...">
+            </div>
+            <div class="top-bar-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">5</span>
+                </button>
+                <button class="messages-btn">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <img src="images/avatar-placeholder.png" alt="صورة المستخدم">
+                    <div class="dropdown-menu">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            الإعدادات
+                        </a>
+                        <a href="index.html" class="logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Course Details Content -->
+        <div class="dashboard-content">
+            <div class="page-header">
+                <div class="header-actions">
+                    <a href="courses.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-right"></i>
+                        العودة للدورات
+                    </a>
+                    <button class="btn btn-primary" id="editCourseBtn">
+                        <i class="fas fa-edit"></i>
+                        تعديل الدورة
+                    </button>
+                </div>
+                <div class="breadcrumb">
+                    <a href="dashboard.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <a href="courses.html">الدورات</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>تفاصيل الدورة</span>
+                </div>
+            </div>
+
+            <!-- Course Overview -->
+            <div class="course-overview">
+                <div class="course-header">
+                    <div class="course-image">
+                        <img src="images/course-web.jpg" alt="تطوير الويب">
+                        <div class="course-status active">نشط</div>
+                    </div>
+                    <div class="course-info">
+                        <h1>تطوير تطبيقات الويب المتقدمة</h1>
+                        <div class="course-meta">
+                            <span><i class="fas fa-users"></i> 45 طالب</span>
+                            <span><i class="fas fa-clock"></i> 12 أسبوع</span>
+                            <span><i class="fas fa-calendar"></i> يبدأ: 15/2/2024</span>
+                            <span><i class="fas fa-star"></i> 4.8 (120 تقييم)</span>
+                        </div>
+                        <p class="course-description">
+                            تعلم تطوير تطبيقات الويب باستخدام أحدث التقنيات والأدوات. هذه الدورة تغطي المفاهيم الأساسية والمتقدمة في تطوير الويب، بما في ذلك HTML5، CSS3، JavaScript، React.js، Node.js، وغيرها من التقنيات الحديثة.
+                        </p>
+                        <div class="course-tags">
+                            <span class="tag">تطوير الويب</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Stats -->
+                <div class="course-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="stat-info">
+                            <h3>45</h3>
+                            <span>الطلاب المسجلين</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <span>المواد الدراسية</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-info">
+                            <h3>48</h3>
+                            <span>ساعة تدريبية</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-info">
+                            <h3>4.8</h3>
+                            <span>متوسط التقييم</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Tabs -->
+            <div class="course-tabs">
+                <button class="tab-btn active" data-tab="curriculum">المنهج الدراسي</button>
+                <button class="tab-btn" data-tab="students">الطلاب</button>
+                <button class="tab-btn" data-tab="reviews">التقييمات</button>
+                <button class="tab-btn" data-tab="attendance">الحضور</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Curriculum Tab -->
+                <div class="tab-pane active" id="curriculum">
+                    <div class="curriculum-header">
+                        <h2>المنهج الدراسي</h2>
+                        <button class="btn btn-primary" id="addMaterialBtn">
+                            <i class="fas fa-plus"></i>
+                            إضافة مادة جديدة
+                        </button>
+                    </div>
+
+                    <div class="materials-list">
+                        <!-- Material Item -->
+                        <div class="material-item">
+                            <div class="material-header">
+                                <div class="material-info">
+                                    <h3>مقدمة في HTML5 و CSS3</h3>
+                                    <span class="material-meta">
+                                        <i class="fas fa-clock"></i> 4 ساعات
+                                        <i class="fas fa-file-alt"></i> 3 ملفات
+                                    </span>
+                                </div>
+                                <div class="material-actions">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        تعديل
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                        حذف
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="material-content">
+                                <p>تعلم أساسيات HTML5 و CSS3، بما في ذلك العناصر الجديدة، الخصائص المتقدمة، والتنسيق المتجاوب.</p>
+                                <div class="material-files">
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-pdf"></i>
+                                        ملخص الدرس الأول.pdf
+                                    </a>
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-code"></i>
+                                        أمثلة الكود.zip
+                                    </a>
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-image"></i>
+                                        الصور التوضيحية.zip
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Material Item -->
+                        <div class="material-item">
+                            <div class="material-header">
+                                <div class="material-info">
+                                    <h3>JavaScript الأساسي</h3>
+                                    <span class="material-meta">
+                                        <i class="fas fa-clock"></i> 6 ساعات
+                                        <i class="fas fa-file-alt"></i> 4 ملفات
+                                    </span>
+                                </div>
+                                <div class="material-actions">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        تعديل
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                        حذف
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="material-content">
+                                <p>تعلم أساسيات JavaScript، بما في ذلك المتغيرات، الدوال، الكائنات، والمصفوفات.</p>
+                                <div class="material-files">
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-pdf"></i>
+                                        ملخص JavaScript.pdf
+                                    </a>
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-code"></i>
+                                        تمارين JavaScript.zip
+                                    </a>
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-video"></i>
+                                        فيديو الدرس.mp4
+                                    </a>
+                                    <a href="#" class="file-item">
+                                        <i class="fas fa-file-alt"></i>
+                                        الواجب المنزلي.pdf
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Tab -->
+                <div class="tab-pane" id="students">
+                    <div class="students-header">
+                        <h2>الطلاب المسجلين</h2>
+                        <div class="students-actions">
+                            <button class="btn btn-primary" id="addStudentBtn">
+                                <i class="fas fa-user-plus"></i>
+                                إضافة طالب
+                            </button>
+                            <button class="btn btn-secondary" id="exportStudentsBtn">
+                                <i class="fas fa-download"></i>
+                                تصدير القائمة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="students-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>تاريخ التسجيل</th>
+                                    <th>الحضور</th>
+                                    <th>التقدم</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="images/avatar-placeholder.png" alt="صورة الطالب">
+                                            <div>
+                                                <h4>أحمد محمد</h4>
+                                                <span>ID: 12345</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>ahmed@example.com</td>
+                                    <td>1/1/2024</td>
+                                    <td>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 85%"></div>
+                                            <span>85%</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 70%"></div>
+                                            <span>70%</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-secondary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- More student rows... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="tab-pane" id="reviews">
+                    <div class="reviews-header">
+                        <div class="reviews-summary">
+                            <div class="rating-overview">
+                                <h2>4.8</h2>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span>من 120 تقييم</span>
+                            </div>
+                            <div class="rating-bars">
+                                <div class="rating-bar">
+                                    <span>5 نجوم</span>
+                                    <div class="bar">
+                                        <div class="fill" style="width: 75%"></div>
+                                    </div>
+                                    <span>75%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>4 نجوم</span>
+                                    <div class="bar">
+                                        <div class="fill" style="width: 15%"></div>
+                                    </div>
+                                    <span>15%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>3 نجوم</span>
+                                    <div class="bar">
+                                        <div class="fill" style="width: 5%"></div>
+                                    </div>
+                                    <span>5%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>2 نجوم</span>
+                                    <div class="bar">
+                                        <div class="fill" style="width: 3%"></div>
+                                    </div>
+                                    <span>3%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>1 نجمة</span>
+                                    <div class="bar">
+                                        <div class="fill" style="width: 2%"></div>
+                                    </div>
+                                    <span>2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reviews-list">
+                        <!-- Review Item -->
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="images/avatar-placeholder.png" alt="صورة المراجع">
+                                    <div>
+                                        <h4>محمد علي</h4>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="review-date">15/2/2024</span>
+                            </div>
+                            <p class="review-content">
+                                دورة ممتازة جداً! المحتوى منظم بشكل جيد والمدرب يشرح بطريقة واضحة ومفهومة. أنصح بها بشدة لكل من يريد تعلم تطوير الويب.
+                            </p>
+                            <div class="review-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-reply"></i>
+                                    رد
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                    حذف
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- More review items... -->
+                    </div>
+                </div>
+
+                <!-- Attendance Tab -->
+                <div class="tab-pane" id="attendance">
+                    <div class="attendance-header">
+                        <h2>سجل الحضور</h2>
+                        <div class="attendance-actions">
+                            <button class="btn btn-primary" id="takeAttendanceBtn">
+                                <i class="fas fa-clipboard-check"></i>
+                                تسجيل الحضور
+                            </button>
+                            <button class="btn btn-secondary" id="exportAttendanceBtn">
+                                <i class="fas fa-download"></i>
+                                تصدير السجل
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="attendance-calendar">
+                        <div class="calendar-toolbar">
+                            <div class="calendar-actions">
+                                <button class="btn btn-secondary" id="prevMonth">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <button class="btn btn-secondary" id="nextMonth">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="btn btn-primary" id="today">اليوم</button>
+                            </div>
+                            <div class="calendar-view">
+                                <button class="btn btn-secondary active" data-view="dayGridMonth">شهري</button>
+                                <button class="btn btn-secondary" data-view="timeGridWeek">أسبوعي</button>
+                                <button class="btn btn-secondary" data-view="timeGridDay">يومي</button>
+                                <button class="btn btn-secondary" data-view="listWeek">قائمة</button>
+                            </div>
+                        </div>
+                        <div id="calendar"></div>
+                    </div>
+
+                    <div class="attendance-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-check"></i>
+                            <div class="stat-info">
+                                <h3>85%</h3>
+                                <span>متوسط الحضور</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-user-check"></i>
+                            <div class="stat-info">
+                                <h3>38</h3>
+                                <span>الطلاب الحاضرون</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-user-times"></i>
+                            <div class="stat-info">
+                                <h3>7</h3>
+                                <span>الطلاب الغائبون</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="attendance-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>التاريخ</th>
+                                    <th>عدد الحاضرين</th>
+                                    <th>عدد الغائبين</th>
+                                    <th>نسبة الحضور</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15/2/2024</td>
+                                    <td>40</td>
+                                    <td>5</td>
+                                    <td>
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 88%"></div>
+                                            <span>88%</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="btn btn-secondary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                                عرض التفاصيل
+                                            </button>
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                                تعديل
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- More attendance rows... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Material Modal -->
+    <div class="modal" id="addMaterialModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إضافة مادة جديدة</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addMaterialForm">
+                <div class="form-group">
+                    <label for="materialTitle">عنوان المادة</label>
+                    <input type="text" id="materialTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="materialDescription">وصف المادة</label>
+                    <textarea id="materialDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="materialDuration">المدة (بالساعات)</label>
+                        <input type="number" id="materialDuration" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="materialOrder">ترتيب المادة</label>
+                        <input type="number" id="materialOrder" min="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="materialFiles">الملفات المرفقة</label>
+                    <input type="file" id="materialFiles" multiple>
+                    <div class="file-preview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelAddMaterial">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">إضافة المادة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div class="modal" id="addStudentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إضافة طالب جديد</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addStudentForm">
+                <div class="form-group">
+                    <label for="studentName">اسم الطالب</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentEmail">البريد الإلكتروني</label>
+                    <input type="email" id="studentEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentPhone">رقم الهاتف</label>
+                    <input type="tel" id="studentPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentImage">الصورة الشخصية</label>
+                    <input type="file" id="studentImage" accept="image/*">
+                    <div class="image-preview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelAddStudent">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">إضافة الطالب</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Take Attendance Modal -->
+    <div class="modal" id="takeAttendanceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تسجيل الحضور</h2>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="takeAttendanceForm">
+                <div class="form-group">
+                    <label for="attendanceDate">التاريخ</label>
+                    <input type="date" id="attendanceDate" required>
+                </div>
+                <div class="students-attendance-list">
+                    <!-- Student attendance items will be added dynamically -->
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelTakeAttendance">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ الحضور</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/course-details.js"></script>
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/list@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment-timezone@6.1.10/main.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/moment-timezone@0.5.43/builds/moment-timezone-with-data.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/locales/ar.js'></script>
+    <script>
+        const userType = localStorage.getItem('userType');
+        if (userType !== 'admin' && userType !== 'student') {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 

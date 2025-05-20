@@ -1,0 +1,127 @@
+/* RTL Specific Styles */
+
+/* Text Alignment */
+body {
+    text-align: right;
+}
+
+.section-title::after {
+    left: auto;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+/* Navigation */
+.nav-menu {
+    padding-right: 0;
+}
+
+.nav-toggle {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* Forms */
+.form-group input,
+.form-group textarea {
+    text-align: right;
+}
+
+/* Lists */
+.features-list li i {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+/* Testimonials */
+.testimonial-author {
+    flex-direction: row-reverse;
+}
+
+/* Contact Info */
+.info-item i {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* Footer */
+.footer-links ul {
+    padding-right: 0;
+}
+
+.social-links {
+    flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .nav-menu {
+        right: 0;
+        left: auto;
+    }
+}
+
+/* Additional RTL Fixes */
+.hero-buttons {
+    flex-direction: row-reverse;
+}
+
+.about-content {
+    direction: rtl;
+}
+
+.contact-content {
+    direction: rtl;
+}
+
+/* Fix for Font Awesome Icons in RTL */
+.fa-chevron-left:before {
+    content: "\f054";
+}
+
+.fa-chevron-right:before {
+    content: "\f053";
+}
+
+/* Fix for Social Icons */
+.social-links a {
+    transform: scaleX(-1);
+}
+
+/* Fix for Navigation Icons */
+.nav-menu i {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* Fix for Category Cards */
+.category-card i {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Fix for News Cards */
+.news-content {
+    text-align: right;
+}
+
+/* Fix for Contact Form */
+.contact-form {
+    direction: rtl;
+}
+
+/* Fix for Footer Content */
+.footer-content {
+    direction: rtl;
+}
+
+/* Fix for Mobile Menu */
+@media (max-width: 992px) {
+    .nav-menu {
+        text-align: right;
+    }
+    
+    .auth-buttons {
+        flex-direction: row-reverse;
+    }
+} 
